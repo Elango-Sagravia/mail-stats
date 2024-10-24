@@ -9,7 +9,7 @@ async function getData(startDate, endDate) {
   const timeoutId = setTimeout(() => controller.abort(), 20000);
   const response = await fetch(
     `/api/dashboard?start_date=${startDate}&end_date=${endDate}`,
-    { signal }
+    { signal: controller.signal }
   );
   const data = await response.json();
   clearTimeout(timeoutId);
