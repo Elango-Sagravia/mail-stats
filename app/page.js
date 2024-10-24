@@ -6,7 +6,7 @@ import React, { useState } from "react";
 
 async function getData(startDate, endDate) {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/dashboard?start_date=${startDate}&end_date=${endDate}`
+    `/api/dashboard?start_date=${startDate}&end_date=${endDate}`
   );
   return await response.json();
 }
