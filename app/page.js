@@ -5,10 +5,16 @@ import DatePickerWithRange from "@/components/DatePickerWithRange";
 import React, { useState } from "react";
 
 async function getData(startDate, endDate) {
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 20000);
   const response = await fetch(
-    `/api/dashboard?start_date=${startDate}&end_date=${endDate}`
+    `/api/dashboard?start_date=${startDate}&end_date=${endDate}`,
+    { signal }
   );
-  return await response.json();
+  const data = await response.json();
+  clearTimeout(timeoutId);
+
+  return data;
 }
 
 function Homepage() {
